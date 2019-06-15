@@ -1,10 +1,16 @@
 <mat-toolbar color="primary">
-  <mat-toolbar-row>
-     <!-- <span><a href="/">HOME</a></span> -->
+  <mat-toolbar-row *ngIf="!currentUser">
      <span class="spacer"></span>
      <a mat-button routerLink="/register" routerLinkActive="mat-accent">Register</a>
-     <a mat-button routerLink="/login">Login</a>
+     <a mat-button routerLink="/login" routerLinkActive="mat-accent">Login</a>
   </mat-toolbar-row>
+  <mat-toolbar-row *ngIf="currentUser">
+      <span class="spacer"></span>
+      <a mat-button routerLink="/dashboard" routerLinkActive="mat-accent">Dashboard</a>
+      <a mat-button routerLink="/explore" routerLinkActive="mat-accent">Explore</a>
+      <a mat-button routerLink="/setting" routerLinkActive="mat-accent">Settings</a>
+      <a mat-button routerLink="/logout" (click)="logout()">Logout</a>
+   </mat-toolbar-row>
 </mat-toolbar>
 
 <router-outlet></router-outlet>

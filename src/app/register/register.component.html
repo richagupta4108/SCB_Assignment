@@ -1,3 +1,18 @@
-<p>
-  register works!
-</p>
+<div class="grid">
+    <form [formGroup]="registerForm" (ngSubmit)="register()">
+        <input id="username" type="text" placeholder="User name" 
+        [ngClass]="{ 'is-invalid': isSubmitted && formControls.username.errors }"formControlName="username">  
+      <input id="email" pattern="^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$" 
+      [ngClass]="{ 'is-invalid': isSubmitted && formControls.email.errors }" type="email" placeholder="Email ID" formControlName="email">
+      <input id="contact" type="tel" minlength="10" maxlength="10" placeholder="Contact Number"
+      [ngClass]="{ 'is-invalid': isSubmitted && formControls.contact.errors }" formControlName="contact">
+      <input id="address" type="text" placeholder="Address" 
+      [ngClass]="{ 'is-invalid': isSubmitted && formControls.address.errors }"formControlName="address">
+      <input id="password" type="password" placeholder="Password" 
+      [ngClass]="{ 'is-invalid': isSubmitted && formControls.password.errors }"formControlName="password">
+      <input id="cpassword" type="password" placeholder="Confirm Password" 
+      [ngClass]="{ 'is-invalid': isSubmitted && formControls.cpassword.errors }"formControlName="cpassword">
+
+      <button type="submit">Register</button>
+    </form>
+  </div>

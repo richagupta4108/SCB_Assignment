@@ -1,12 +1,20 @@
 <div class="grid">
-  <form class="form1" action="">
-    <input id="userName" type="text" placeholder="Username">
+  <form [formGroup]="loginForm" (ngSubmit)="login()">
+    <div [ngClass]="{'errorSpan': isSubmitted && wrongCredentials}">{{wrongCredentials}}</div>
+      <input id="username" type="text" placeholder="Username" formControlName="username"
+      [ngClass]="{ 'is-invalid': isSubmitted && formControls.username.errors }">
+    <div *ngIf="isSubmitted && formControls.username.errors" class="error-message">
+        <div *ngIf="formControls.username.errors.required">username is required!</div>
+      </div>
 
-    <input id="password" type="password" placeholder="Password">
-
-    <button>Login</button>
+    <input id="password" type="password" placeholder="Password" formControlName="password"
+    [ngClass]="{ 'is-invalid': isSubmitted && formControls.password.errors }">
+    <div *ngIf="isSubmitted && formControls.password.errors" class="error-message">
+        <div *ngIf="formControls.password.errors.required">password is required!</div>
+      </div>
+    <button type="submit">Login</button>
     <div class="footer">Not registered?
-    <a href="#">
-      Create an account</a> </div>
-</form>
+      <a routerLink="/register">
+        Create an account</a> </div>
+  </form>
 </div>
