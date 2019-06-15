@@ -1,6 +1,6 @@
-.grid {
-    margin: 2rem 4rem;
-}
+// .grid {
+//     margin: 2rem 4rem;
+// }
 
 .left {
     min-height: 100%;
@@ -17,6 +17,29 @@
     background-color: darkred !important;
 }
 
+.bg {
+    /* The image used */
+    background-image: url("./../../assets/images/1003220.png");
+  
+    /* Full height */
+    height: 100%; 
+  
+    /* Center and scale the image nicely */
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+
+#notReviewed{
+    width: 100%;
+    height: 2rem;
+    background-color: brown;
+    color: white;
+    text-align: center;
+    padding-top: 0.6rem;
+    
+}
+
 #details {
     background-color: cadetblue !important;
 }
@@ -28,17 +51,27 @@
     // padding-left: 1rem !important;
 }
 
+#likedMovies {
+    width: 100%;
+    height: 2rem;
+    background-color: brown;
+    color: white;
+    text-align: center;
+    padding-top: 0.6rem;
+}
+
 .mat-card {
     border: 1px solid aliceblue;
     margin-bottom: 1rem;
     overflow: hidden;
-    background-color: beige;
-    max-width: 50rem;
+    background-color: antiquewhite;
+    max-width: 78rem;
+    margin-left: 2rem;
 }
 
-#search-results {
-    margin-top: 1rem;
-}
+// #search-results {
+//     margin-top: 1rem;
+// }
 
 #searchInput {
     padding: 6px;
@@ -77,9 +110,9 @@
         min-width: 15rem;
     }
 
-    .grid {
-        margin:1rem;
-    }
+    // .grid {
+    //     margin:1rem;
+    // }
 
     .mat-card-image {
         margin: 0.5rem !important;

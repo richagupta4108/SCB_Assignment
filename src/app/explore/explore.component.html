@@ -1,33 +1,41 @@
-<div class="grid">
-  <div id="search-panel">
-    <input type="text" placeholder="Search" id="searchInput"/>
-    <button type="submit" id="searchBtn">Search</button>
-  </div>
-  <div id="search-results" *ngIf="movieList">
-    <div *ngFor="let movie of movieList">
-    <mat-card >
-        <mat-card-title>{{movie.Title}}</mat-card-title>
-        <mat-card-subtitle>{{movie.Type | uppercase }}</mat-card-subtitle>
-        <div class="left">
-        <img mat-card-image src= "{{movie.Poster}}" alt="image of {{movie.Title}}"/>
-        </div>
-        <div class="right">
-        <mat-card-content>
-          <p>{{movie.Title}}</p>
-          <p>Year : {{movie.Year}}</p>
-        </mat-card-content>
-        <mat-card-actions>
-            <span *ngIf="!movie.liked; else undo">
+<div class="outer-grid">
+  <div class="grid">
+    <div id="search-panel">
+      <input type="text" placeholder="Search  by movie name..." id="searchInput" [(ngModel)]="searchInput" />
+      <button type="submit" id="searchBtn" (click)="search(searchInput)">Search</button>
+    </div>
+    <div id="search-results" *ngIf="filteredMovieList">
+      <div *ngFor="let movie of filteredMovieList">
+        <mat-card>
+          <mat-card-title>{{movie.Title}}</mat-card-title>
+          <mat-card-subtitle>{{movie.Type | uppercase }}</mat-card-subtitle>
+          <div class="left">
+            <img mat-card-image src="{{movie.Poster}}" alt="image of {{movie.Title}}" />
+          </div>
+          <div class="right">
+            <mat-card-content>
+              <p>{{movie.Title}}</p>
+              <p>Year : {{movie.Year}}</p>
+              <div> User Rating </div>
+              <div>
+                <mat-slider thumbLabel tickInterval="1" [min]="0" [max]="10" [(ngModel)]="movie.userRating">
+                </mat-slider>
+              </div>
+
+            </mat-card-content>
+            <mat-card-actions>
+              <span *ngIf="!movie.liked; else undo">
                 <button mat-button id="like" (click)="likeClicked(movie)">LIKE</button>
-            </span>
+              </span>
               <ng-template #undo>
                 <button mat-button id="unlike" (click)="unLikeClicked(movie)">UNDO</button>
               </ng-template>
-            <button mat-button id="details" (click)="getDetails(movie)">Get Details</button>
-        </mat-card-actions>
+              <button mat-button id="details" (click)="getDetails(movie)">Get Details</button>
+            </mat-card-actions>
+          </div>
+
+        </mat-card>
       </div>
-        
-    </mat-card>
-  </div>
+    </div>
   </div>
 </div>

@@ -1,18 +1,20 @@
-<div class="grid" >
+<div [ngClass]="{'bg' : !likedMovies}">
+<!-- <div class="grid" > -->
     <div id="search-results" *ngIf="likedMovies">
-      <div> Movied Liked By You...</div>
+      <div id="likedMovies"> Movied Liked By You...</div>
       <div id="space"></div>
       <div *ngFor="let movie of likedMovies">
       <mat-card >
-          <mat-card-title>{{movie.Title}}</mat-card-title>
-          <mat-card-subtitle>{{movie.Type | uppercase }}</mat-card-subtitle>
           <div class="left">
           <img mat-card-image src= "{{movie.Poster}}" alt="image of {{movie.Title}}"/>
           </div>
           <div class="right">
           <mat-card-content>
+              <mat-card-title>{{movie.Title}}</mat-card-title>
+              <mat-card-subtitle>{{movie.Type | uppercase }}</mat-card-subtitle>
             <p>{{movie.Title}}</p>
-            <p>Year : {{movie.Year}}</p>
+            <p><b>Year :</b> {{movie.Year}}</p>
+            <p *ngIf="movie.userRating"><b>User Rating:</b> {{movie.userRating}}</p>
           </mat-card-content>
           <mat-card-actions>
               <button mat-button id="details" (click)="getDetails(movie)">Get Details</button>
@@ -22,7 +24,9 @@
     </div>
     </div>
     <div *ngIf="!likedMovies">
-      You have not liked any movies. Please Explore...
+      <div id="notReviewed">You have not provided any reviews. Please Explore and Review.</div>
+      <!-- <div class="bg"></div> -->
     </div>
   </div>
+<!-- </div> -->
   
