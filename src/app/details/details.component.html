@@ -1,0 +1,35 @@
+<div class="grid">
+  <div id="search-results" *ngIf="selectedMovie">
+
+    <mat-card>
+      <mat-card-title>{{selectedMovie.Title}}</mat-card-title>
+      <mat-card-subtitle>{{selectedMovie.Type}}</mat-card-subtitle>
+      <div class="left">
+        <img mat-card-image src="{{selectedMovie.Poster}}" alt="image of {{selectedMovie.Title}}" />
+      </div>
+      <div class="right">
+        <mat-card-content>
+          <p>{{selectedMovie.Title}}</p>
+          <p>Year : {{selectedMovie.Year}}</p>
+          <p>Actors: {{selectedMovie.Actors}}</p>
+          <p>Released: {{selectedMovie.Released}}</p>
+          <p>Genre: {{selectedMovie.Genre}}</p>
+          <p>Director: {{selectedMovie.Director}}</p>
+          <p>Language: {{selectedMovie.Language}}</p>
+
+        </mat-card-content>
+      </div>
+      <div id="summary">
+        Summary:
+        <p></p>
+        <mat-card-content>
+          <p>Plot: {{selectedMovie.Plot}}</p>
+          <p>Awards: {{selectedMovie.Awards}}</p>
+          <p>IMDB Rating: {{selectedMovie.imdbRating}}</p>
+          <p>IMDB Votes: {{selectedMovie.imdbVotes}}</p>
+          <p>Production: {{selectedMovie.Production}}</p>
+        </mat-card-content>
+      </div>
+    </mat-card>
+  </div>
+</div>

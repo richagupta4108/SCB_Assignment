@@ -18,6 +18,9 @@ import { AuthService } from './services/auth.service';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { ExploreComponent } from './explore/explore.component';
 import { SettingsComponent } from './settings/settings.component';
+import { DetailsComponent } from './details/details.component';
+import { DataService } from './services/data.service';
+import { DataFile } from './data/movies.data';
 
 @NgModule({
   declarations: [
@@ -26,7 +29,8 @@ import { SettingsComponent } from './settings/settings.component';
     RegisterComponent,
     DashboardComponent,
     ExploreComponent,
-    SettingsComponent
+    SettingsComponent,
+    DetailsComponent
   ],
   imports: [
     MyMaterialModule,
@@ -39,7 +43,9 @@ import { SettingsComponent } from './settings/settings.component';
   ],
   providers: [
     RegisterService,
+    DataService,
     AuthService,
+    DataFile,
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     fakeBackendProvider
   ],

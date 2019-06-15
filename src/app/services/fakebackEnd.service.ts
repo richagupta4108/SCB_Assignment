@@ -1,12 +1,14 @@
 import { Injectable } from '@angular/core';
-import { HttpRequest, HttpResponse, HttpHandler, HttpEvent, HttpInterceptor, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HttpRequest, HttpResponse, HttpHandler, HttpEvent, HttpInterceptor, HTTP_INTERCEPTORS, HttpHeaders, HttpClient } from '@angular/common/http';
 import { Observable, of, throwError } from 'rxjs';
-import { delay, mergeMap, materialize, dematerialize } from 'rxjs/operators';
+import { delay, mergeMap, materialize, dematerialize, tap } from 'rxjs/operators';
+import { DataFile } from '../data/movies.data';
 
 @Injectable()
 export class FakeBackendInterceptor implements HttpInterceptor {
 
-    constructor() { }
+    constructor(private dataFile: DataFile,
+       private _http: HttpClient) { }
 
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
         // array in local storage for registered users
@@ -40,33 +42,27 @@ export class FakeBackendInterceptor implements HttpInterceptor {
                 }
             }
 
-            // // get users
-            // if (request.url.endsWith('/users') && request.method === 'GET') {
-            //     // check for fake auth token in header and return users if valid, this security is implemented server side in a real application
-            //     if (request.headers.get('Authorization') === 'Bearer fake-jwt-token') {
-            //         return of(new HttpResponse({ status: 200, body: users }));
-            //     } else {
-            //         // return 401 not authorised if token is null or invalid
-            //         return throwError({ status: 401, error: { message: 'Unauthorised' } });
-            //     }
-            // }
+            // get users
+            if (request.url.endsWith('66d6dbc3') && request.method === 'GET') {
+                let data = this.dataFile.getData();
+                let headersRe = new HttpHeaders();
+                headersRe.set('Access-Control-Allow-Origin', '*');
+                // let data = request.clone({
+                //     url: request.url,
+                //     headers: headersRe
+                // });
 
-            // get user by id
-            // if (request.url.match(/\/users\/\d+$/) && request.method === 'GET') {
-            //     // check for fake auth token in header and return user if valid, this security is implemented server side in a real application
-            //     if (request.headers.get('Authorization') === 'Bearer fake-jwt-token') {
-            //         // find user by id in users array
-            //         let urlParts = request.url.split('/');
-            //         let id = parseInt(urlParts[urlParts.length - 1]);
-            //         let matchedUsers = users.filter(user => { return user.id === id; });
-            //         let user = matchedUsers.length ? matchedUsers[0] : null;
+                // next.handle(data).pipe(tap(evt => {
+                //     if (evt instanceof HttpResponse) {
+                //         if(evt.body && evt.body.success) {
+                //             console.log('hello');
+                //             return of(new HttpResponse({ status: 200,body: evt.body, headers: headersRe }));
+                //         }
+                //     }
+                // }))
 
-            //         return of(new HttpResponse({ status: 200, body: user }));
-            //     } else {
-            //         // return 401 not authorised if token is null or invalid
-            //         return throwError({ status: 401, error: { message: 'Unauthorised' } });
-            //     }
-            // }
+                return of(new HttpResponse({ status: 200,body: data, headers: headersRe }));
+            }
 
             // register user
             if (request.url.endsWith('/users/register') && request.method === 'POST') {

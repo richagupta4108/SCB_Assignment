@@ -10,7 +10,11 @@
 .right {
     float: left;
     margin-left:2rem;
-    margin-top:3rem;
+    // margin-top:3rem;
+}
+
+#summary{
+    float:left;
 }
 
 #like {
@@ -33,7 +37,7 @@
     margin-bottom: 1rem;
     overflow: hidden;
     background-color: beige;
-    max-width: 50rem;
+    // max-width: 50rem;
 }
 
 #search-results {
