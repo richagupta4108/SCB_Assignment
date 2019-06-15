@@ -7,13 +7,14 @@
     <div id="search-results" *ngIf="filteredMovieList">
       <div *ngFor="let movie of filteredMovieList">
         <mat-card>
-          <mat-card-title>{{movie.Title}}</mat-card-title>
-          <mat-card-subtitle>{{movie.Type | uppercase }}</mat-card-subtitle>
+          
           <div class="left">
             <img mat-card-image src="{{movie.Poster}}" alt="image of {{movie.Title}}" />
           </div>
           <div class="right">
             <mat-card-content>
+                <mat-card-title>{{movie.Title}}</mat-card-title>
+                <mat-card-subtitle>{{movie.Type | uppercase }}</mat-card-subtitle>
               <p>{{movie.Title}}</p>
               <p>Year : {{movie.Year}}</p>
               <div> User Rating </div>
